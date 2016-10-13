@@ -1,0 +1,25 @@
+{% load wagtailcore_tags %}
+{% load core_tags %}
+
+<nav class="navbar navbar-default container" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        {# <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>#}
+    </div>
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+            {% root_page as homepage %}
+            <li><a href="{% pageurl homepage %}">Home</a></li>
+
+            {% child_pages homepage as children %}
+                {% for page in children %}
+                        {%include "navbar_tree.html" %}
+                {%endfor%}
+        </ul>
+    </div>
+</nav>

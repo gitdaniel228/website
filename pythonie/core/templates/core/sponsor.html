@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+
+{% if sponsors %}<h2>Sponsors</h2>{% endif %}
+{% for sponsorship in sponsors %}
+    {% ifchanged %}<h3>{{ sponsorship.level.name }}</h3>{% endifchanged %}
+    <div class="col-md-12">
+        <a href="{{ sponsorship.sponsor.url }}"
+                title="{{ sponsorship.sponsor.description }}">
+            <h3>{{ sponsorship.sponsor.name }}</h3>
+            {% image sponsorship.sponsor.logo max-200x240 class="thumbnail" %}
+        </a>
+    </div>
+{% endfor %}
